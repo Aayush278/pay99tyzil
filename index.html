@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmed - Tyzil</title>
+    <meta name="description" content="Your payment has been received. Welcome to Tyzil!">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+:root {
+    --primary-black: #000000;
+    --purple-primary: #b76e79;
+    --purple-secondary: #c97f8a;
+    --purple-light: #d4919b;
+    --purple-accent: #b08968;
+    --text-color: #d1d5db;
+    --text-muted: #9ca3af;
+    --card-bg: #111111;
+    --success-green: #10b981;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 300;
+    background: var(--primary-black);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 650px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.confirmation-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid rgba(183, 110, 121, 0.3);
+    box-shadow: 0 20px 50px rgba(183, 110, 121, 0.2);
+    padding: 50px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.confirmation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--purple-accent), var(--purple-light), var(--purple-accent));
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--success-green), #34d399);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+@keyframes scaleIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.success-icon i {
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+.confirmation-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #ffffff, var(--purple-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1px;
+}
+
+.confirmation-subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    line-height: 1.7;
+}
+
+.payment-amount {
+    display: inline-block;
+    background: rgba(183, 110, 121, 0.1);
+    border: 1px solid rgba(183, 110, 121, 0.3);
+    border-radius: 8px;
+    padding: 15px 30px;
+    margin-bottom: 35px;
+}
+
+.payment-amount .amount {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 800;
+    color: var(--purple-light);
+    display: block;
+}
+
+.payment-amount .label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+.instruction-box {
+    background: rgba(176, 137, 104, 0.1);
+    border: 1px solid rgba(176, 137, 104, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.instruction-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.instruction-title i {
+    color: var(--purple-accent);
+}
+
+.instruction-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 18px;
+    font-size: clamp(0.95rem, 3vw, 1.05rem);
+    line-height: 1.7;
+}
+
+.instruction-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-number {
+    background: var(--purple-accent);
+    color: #ffffff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.step-text {
+    flex: 1;
+    color: var(--text-color);
+}
+
+.step-text strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.whatsapp-number {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(37, 211, 102, 0.15);
+    border: 1px solid rgba(37, 211, 102, 0.3);
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: #25D366;
+    font-weight: 600;
+    font-family: 'Manrope', monospace;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+}
+
+.whatsapp-number i {
+    font-size: 1.2rem;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #ffffff;
+    padding: 18px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
+    margin-top: 10px;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-btn i {
+    font-size: 1.4rem;
+}
+
+.footer-note {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(183, 110, 121, 0.2);
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.footer-note i {
+    color: var(--purple-accent);
+    margin-right: 5px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.logo-img {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 2px 8px rgba(183, 110, 121, 0.3));
+}
+
+@media (max-width: 640px) {
+    .confirmation-card {
+        padding: 40px 25px;
+    }
+
+    .success-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .success-icon i {
+        font-size: 2rem;
+    }
+
+    .instruction-box {
+        padding: 25px 20px;
+    }
+
+    .whatsapp-btn {
+        padding: 16px 30px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .logo-img {
+        height: 50px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="confirmation-card">
+            <div class="logo-container">
+                <img src="logo.png" alt="Tyzil Logo Icon" class="logo-img">
+                <img src="logo2.png" alt="Tyzil Logo Text" class="logo-img">
+            </div>
+
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+
+            <h1 class="confirmation-title">Payment Received!</h1>
+            <p class="confirmation-subtitle">Thank you for joining Tyzil. We're excited to help you start building!</p>
+
+            <div class="payment-amount">
+                <span class="amount">₹99</span>
+                <span class="label">Payment Confirmed</span>
+            </div>
+
+            <div class="instruction-box">
+                <h2 class="instruction-title">
+                    <i class="fas fa-bell"></i>
+                    Next Steps
+                </h2>
+                
+                <div class="instruction-step">
+                    <span class="step-number">1</span>
+                    <div class="step-text">
+                        <strong>Message us on WhatsApp</strong> at <span class="whatsapp-number"><i class="fab fa-whatsapp"></i>+91 99684 43615</span>
+                    </div>
+                </div>
+
+                <div class="instruction-step">
+                    <span class="step-number">2</span>
+                    <div class="step-text">
+                        Send this message: <strong>"I have received payment confirmation of ₹99"</strong>
+                    </div>
+                </div>
+
+                <div class="instruction-step">
+                    <span class="step-number">3</span>
+                    <div class="step-text">
+                        <strong>Screenshot this page</strong> and send it to confirm your payment
+                    </div>
+                </div>
+
+                <div class="instruction-step">
+                    <span class="step-number">4</span>
+                    <div class="step-text">
+                        We'll add you to the <strong>Tyzil community</strong> 
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://wa.me/919968443615?text=I%20have%20received%20payment%20confirmation%20of%20₹99" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                Message on WhatsApp
+            </a>
+
+            <div class="footer-note">
+                <p><i class="fas fa-info-circle"></i> You'll receive access to all Tyzil resources and weekly challenges once verified.</p>
+                <p style="margin-top: 10px;"><i class="fas fa-clock"></i> Response time: Instantly</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Auto-copy WhatsApp number on click
+        document.querySelector('.whatsapp-number').addEventListener('click', function() {
+            const number = '+91 99684 43615';
+            navigator.clipboard.writeText(number).then(() => {
+                // Show a brief notification
+                const original = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    this.innerHTML = original;
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
